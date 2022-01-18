@@ -5,4 +5,9 @@
     <string name="sign_up">Sign Up</string>
     <string name="welcome">Welcome!</string>
     <string name="about_app_images_cd">about app images</string>
+    <string name="login_title">Login</string>
+    <string name="e_mail">E-mail</string>
+    <string name="password">Password</string>
+    <string name="forgot_a_password">Forgot a password?</string>
+    <string name="confirm">Confirm</string>
 </resources>

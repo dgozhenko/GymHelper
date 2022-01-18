@@ -7,6 +7,7 @@ import com.dh.gymhelper.R
 import com.dh.gymhelper.databinding.FragmentWelcomeScreenBinding
 import com.dh.gymhelper.presentation.extensions.viewBinding
 import com.dh.gymhelper.presentation.ui.base.BaseFragment
+import com.dh.gymhelper.presentation.ui.login.BottomDialogLogin
 
 class WelcomeFragment: BaseFragment(R.layout.fragment_welcome_screen) {
 
@@ -14,6 +15,11 @@ class WelcomeFragment: BaseFragment(R.layout.fragment_welcome_screen) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupViewPager()
+        setupAuthButtonsListener()
+    }
+
+    private fun setupViewPager() {
         val images = listOf(
             R.drawable.ic_login_1_vector,
             R.drawable.ic_login_2_vector,
@@ -29,5 +35,11 @@ class WelcomeFragment: BaseFragment(R.layout.fragment_welcome_screen) {
         val imageAdapter = WelcomePagerAdapter(imageList = images, textList = texts)
         binding.welcomeImagePager.adapter = imageAdapter
         binding.tabDots.setupWithViewPager(binding.welcomeImagePager)
+    }
+
+    private fun setupAuthButtonsListener() {
+        binding.loginButton.setOnClickListener {
+            BottomDialogLogin().show(childFragmentManager, "login_dialog")
+        }
     }
 }

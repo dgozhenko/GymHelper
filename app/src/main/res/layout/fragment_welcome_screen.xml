@@ -61,6 +61,7 @@
         android:text="@string/login"
         android:layout_marginBottom="16dp"
         android:layout_marginTop="16dp"
+        android:foreground="?attr/selectableItemBackground"
         app:layout_constraintTop_toBottomOf="@id/pager_layout"
         app:layout_constraintBottom_toTopOf="@id/sigh_up_button"/>
 
@@ -74,6 +75,7 @@
         android:text="@string/sign_up"
         android:layout_marginHorizontal="24dp"
         android:layout_marginBottom="30dp"
+        android:foreground="?attr/selectableItemBackground"
         app:layout_constraintTop_toBottomOf="@id/login_button"
         app:layout_constraintBottom_toBottomOf="parent"/>
 

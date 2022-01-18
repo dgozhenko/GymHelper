@@ -4,7 +4,7 @@
     <color name="primaryVariant">#FF111111</color>
     <color name="secondary">#FF304352</color>
     <color name="secondaryVariant">#FF828997</color>
-    <color name="background">#FF212121</color>
+    <color name="background">#FF313131</color>
     <color name="surface">#FF313131</color>
     <color name="error">#FFCF6679</color>
 
@@ -16,4 +16,6 @@
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="text_field_grey">#FF5a5a5a</color>
 </resources>
