@@ -1,13 +1,13 @@
-package com.dh.gymhelper.presentation.ui.welcome
+package com.dh.gymhelper.presentation.ui.auth.welcome
 
 import android.os.Bundle
 import android.view.View
-import androidx.annotation.DrawableRes
+import androidx.navigation.fragment.findNavController
 import com.dh.gymhelper.R
 import com.dh.gymhelper.databinding.FragmentWelcomeScreenBinding
 import com.dh.gymhelper.presentation.extensions.viewBinding
 import com.dh.gymhelper.presentation.ui.base.BaseFragment
-import com.dh.gymhelper.presentation.ui.login.BottomDialogLogin
+import com.dh.gymhelper.presentation.ui.auth.login.BottomDialogLogin
 
 class WelcomeFragment: BaseFragment(R.layout.fragment_welcome_screen) {
 
@@ -40,6 +40,10 @@ class WelcomeFragment: BaseFragment(R.layout.fragment_welcome_screen) {
     private fun setupAuthButtonsListener() {
         binding.loginButton.setOnClickListener {
             BottomDialogLogin().show(childFragmentManager, "login_dialog")
+        }
+
+        binding.sighUpButton.setOnClickListener {
+            findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToSignUpFragment())
         }
     }
 }

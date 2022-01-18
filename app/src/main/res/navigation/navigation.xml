@@ -6,6 +6,18 @@
 
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="com.dh.gymhelper.presentation.ui.welcome.WelcomeFragment"
-        android:label="WelcomeFragment" />
+        android:name="com.dh.gymhelper.presentation.ui.auth.welcome.WelcomeFragment"
+        android:label="WelcomeFragment" >
+        <action
+            android:id="@+id/action_welcomeFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.dh.gymhelper.presentation.ui.auth.signup.SignUpFragment"
+        android:label="SignUpFragment" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.dh.gymhelper.presentation.ui.login
+package com.dh.gymhelper.presentation.ui.auth.login
 
 import android.content.res.ColorStateList
 import android.graphics.Color

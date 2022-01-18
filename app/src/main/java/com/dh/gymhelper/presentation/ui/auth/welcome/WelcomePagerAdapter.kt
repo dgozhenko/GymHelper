@@ -1,4 +1,4 @@
-package com.dh.gymhelper.presentation.ui.welcome
+package com.dh.gymhelper.presentation.ui.auth.welcome
 
 import android.view.LayoutInflater
 import android.view.View
