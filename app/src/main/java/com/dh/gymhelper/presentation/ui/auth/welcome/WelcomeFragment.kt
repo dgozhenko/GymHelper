@@ -2,6 +2,7 @@ package com.dh.gymhelper.presentation.ui.auth.welcome
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.dh.gymhelper.R
 import com.dh.gymhelper.databinding.FragmentWelcomeScreenBinding
@@ -39,7 +40,9 @@ class WelcomeFragment: BaseFragment(R.layout.fragment_welcome_screen) {
 
     private fun setupAuthButtonsListener() {
         binding.loginButton.setOnClickListener {
-            BottomDialogLogin().show(childFragmentManager, "login_dialog")
+            BottomDialogLogin().setOnClickListener{
+
+            }.show(childFragmentManager, "login_dialog")
         }
 
         binding.sighUpButton.setOnClickListener {

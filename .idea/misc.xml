@@ -13,7 +13,7 @@
         <entry key="app/src/main/res/drawable/text_color_hinr.xml" value="0.107" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.11302083333333333" />
         <entry key="app/src/main/res/layout/bottom_dialog_login.xml" value="0.22056159420289856" />
-        <entry key="app/src/main/res/layout/fragment_sign_up_screen.xml" value="0.22056159420289856" />
+        <entry key="app/src/main/res/layout/fragment_sign_up_screen.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_welcome_screen.xml" value="0.12604166666666666" />
         <entry key="app/src/main/res/layout/view_pager_welcome_item.xml" value="0.12604166666666666" />
       </map>
