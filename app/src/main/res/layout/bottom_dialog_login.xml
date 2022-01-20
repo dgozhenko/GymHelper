@@ -87,7 +87,7 @@
         app:layout_constraintTop_toBottomOf="@id/forgot_a_password" />
 
     <ProgressBar
-        android:id="@+id/calendarPb"
+        android:id="@+id/progress_bar"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:indeterminate="true"

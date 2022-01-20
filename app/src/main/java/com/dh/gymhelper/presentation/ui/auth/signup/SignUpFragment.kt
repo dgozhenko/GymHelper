@@ -1,23 +1,92 @@
 package com.dh.gymhelper.presentation.ui.auth.signup
 
+import android.app.Activity
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
+import android.transition.Transition
 import android.view.View
+import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.canhub.cropper.CropImageContract
+import com.canhub.cropper.PickImageContractOptions
+import com.canhub.cropper.options
 import com.dh.gymhelper.R
 import com.dh.gymhelper.databinding.FragmentSignUpScreenBinding
 import com.dh.gymhelper.presentation.extensions.viewBinding
+import com.dh.gymhelper.presentation.ui.auth.login.LoginViewModel
 import com.dh.gymhelper.presentation.ui.base.BaseFragment
+import com.google.android.gms.cast.framework.media.ImagePicker
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@ExperimentalCoroutinesApi
+@AndroidEntryPoint
 class SignUpFragment: BaseFragment(R.layout.fragment_sign_up_screen) {
 
     private val binding by viewBinding(FragmentSignUpScreenBinding::bind)
+    private val viewModel: SignUpViewModel by viewModels()
+
+    private var outputUri: Uri? = null
+
+    private val cropImage =
+        registerForActivityResult(CropImageContract()) { result ->
+            if (result.isSuccessful) {
+                val loadingTarget =
+                    object : CustomTarget<Bitmap>(360, 360) {
+                        override fun onResourceReady(
+                            resource: Bitmap,
+                            transition: com.bumptech.glide.request.transition.Transition<in Bitmap>?
+                        ) {
+                        binding.profileImage.setImageBitmap(resource)
+                        binding.addAPhotoText.visibility = View.GONE
+                        }
+                        override fun onLoadCleared(placeholder: Drawable?) {}
+                    }
+
+
+                val uriContent = result.uriContent
+                outputUri = uriContent!!
+                Glide.with(requireContext())
+                    .asBitmap()
+                    .load(outputUri)
+                    .skipMemoryCache(true)
+                    .into(loadingTarget)
+
+            } else {
+                // an error occurred
+                val exception = result.error
+                Toast.makeText(requireContext(), exception?.message, Toast.LENGTH_SHORT).show()
+            }
+        }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupToolbar()
         confirmButtonListener()
+        imagePickerCalled()
+        initObservers()
+    }
+
+    private fun imagePickerCalled() {
+        binding.profileImage.setOnClickListener{
+            cropImage.launch(
+                options {
+                    setImagePickerContractOptions(
+                        PickImageContractOptions(includeGallery = true, includeCamera = true)
+                    )
+                }
+            )
+        }
     }
 
     private fun setupToolbar() {
@@ -43,8 +112,33 @@ class SignUpFragment: BaseFragment(R.layout.fragment_sign_up_screen) {
                     passwordFieldText = passwordFieldText,
                     confirmPasswordFieldText = confirmPasswordFieldText
                 )) {
-                Snackbar.make(requireView(), "User created", Snackbar.LENGTH_SHORT).show()
+                viewModel.createUser(
+                    imageUri = outputUri,
+                firstName = binding.firstNameTextField.text.toString(),
+                lastName = binding.lastNameTextField.text.toString(),
+                email = binding.emailTextField.text.toString(),
+                password = binding.passwordTextField.text.toString()
+                )
             }
+        }
+    }
+
+    private fun initObservers() {
+
+        viewModel.createUserError.observe(viewLifecycleOwner) {
+            Snackbar.make(requireView(), it, Snackbar.LENGTH_SHORT).show()
+        }
+
+        viewModel.createUserLoading.observe(viewLifecycleOwner) {
+            when  (it) {
+                true -> binding.progressBar.visibility = View.VISIBLE
+                false -> binding.progressBar.visibility = View.GONE
+            }
+        }
+
+        // createUser success
+        viewModel.createUserSuccess.observe(viewLifecycleOwner) {
+            Snackbar.make(requireView(), it, Snackbar.LENGTH_SHORT).show()
         }
     }
 

@@ -68,8 +68,8 @@ class BottomDialogLogin: BottomSheetDialogFragment() {
 
         viewModel.loginLoading.observe(viewLifecycleOwner) {
                when  (it) {
-                   true -> binding.calendarPb.visibility = View.VISIBLE
-                   false -> binding.calendarPb.visibility = View.GONE
+                   true -> binding.progressBar.visibility = View.VISIBLE
+                   false -> binding.progressBar.visibility = View.GONE
                }
         }
 

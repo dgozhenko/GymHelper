@@ -12,8 +12,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
 class UserDataSourceImpl(private val api: Api): UserDataSource {
+
     override suspend fun createUser(user: User): String = repoCall {
-        api.createUser(user)
+        api.createUser(user = user)
     }
 
     override suspend fun login(credentials: Credentials): String = repoCall{

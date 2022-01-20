@@ -6,16 +6,15 @@
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
-        style="@style/Theme.GymHelper.Toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:fontFamily="@font/ubuntu_family"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
-        app:navigationIconTint="@color/onPrimary"
+        app:navigationIconTint="@color/primary"
         app:title="Create an user"
         app:titleTextAppearance="@style/Theme.GymHelper.Toolbar"
-        app:titleTextColor="@color/onPrimary" />
+        app:titleTextColor="@color/primary" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/sign_up_scroll_view"
@@ -226,5 +225,21 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:indeterminate="true"
+        android:visibility="gone"
+        android:indeterminateDrawable="@drawable/progress_rotating_gradient"
+        app:indicatorSize="50dp"
+        android:padding="12dp"
+        android:background="@drawable/rounded_progress_background"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

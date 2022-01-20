@@ -13,7 +13,7 @@ data class User(
     @SerializedName("email")
     val email: String,
     @SerializedName("passwordHash")
-    val passwordHash: String? = null,
+    val passwordHash: String,
     @SerializedName("health")
     val health: Health? = null,
     @SerializedName("trainingIds")
@@ -21,5 +21,7 @@ data class User(
     @SerializedName("exerciseIds")
     val exerciseIds: List<String>? = null,
     @SerializedName("personalBestIds")
-    val personalBestIds: List<String>? = null
+    val personalBestIds: List<String>? = null,
+    @SerializedName("profileImage")
+    val profileImage: String? = null
 )
