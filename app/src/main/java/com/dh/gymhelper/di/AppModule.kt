@@ -9,6 +9,7 @@ import com.dh.gymhelper.data.network.SessionCookieJar
 import com.dh.gymhelper.presentation.util.SessionManager
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.instabug.library.okhttplogger.InstabugOkhttpInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -55,6 +56,7 @@ class AppModule {
             .cookieJar(SessionCookieJar())
             .retryOnConnectionFailure(true)
             .addInterceptor(AuthInterceptor(context))
+            .addInterceptor(InstabugOkhttpInterceptor())
             .addInterceptor(loggingInterceptor)
             .build()
     }

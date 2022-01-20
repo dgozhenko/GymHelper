@@ -5,7 +5,11 @@ plugins {
     id 'dagger.hilt.android.plugin'
     id "androidx.navigation.safeargs.kotlin"
     id 'org.jetbrains.kotlin.plugin.serialization' version '1.6.10'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
+    id 'com.google.firebase.appdistribution'
 }
+//apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'kotlin-android'
 
 android {
@@ -25,7 +29,53 @@ android {
         enableExperimentalClasspathAggregation = true
     }
 
+    signingConfigs {
+        staging {
+            keyAlias 'staging-gym'
+            keyPassword 'Daniil38160026'
+            storeFile file('../staging-gym-keystore.jks')
+            storePassword 'Daniil38160026'
+        }
+        production {
+            keyAlias 'gym'
+            keyPassword 'Daniil38160026'
+            storeFile file('../gym-keystore.jks')
+            storePassword 'Daniil38160026'
+        }
+    }
+    flavorDimensions "version"
+    productFlavors {
+        staging {
+            dimension "version"
+            applicationIdSuffix ".staging"
+            signingConfig signingConfigs.staging
+            manifestPlaceholders = [
+                    APP_NAME: "GymHelperStaging",
+                    env     : "staging"
+            ]
+            firebaseAppDistribution {
+                releaseNotes="Release notes for demo version"
+                testers="daniil.hozhenko@gmail.com"
+            }
+        }
+        production {
+            dimension "version"
+            signingConfig signingConfigs.production
+            manifestPlaceholders = [
+                    APP_NAME: "GymHelper",
+                    env     : "production"
+            ]
+            firebaseAppDistribution {
+                releaseNotes="Release notes for full version"
+                testers="daniil.hozhenko@gmail.com"
+            }
+        }
+    }
+
     buildTypes {
+        debug {
+            debuggable = true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -87,6 +137,16 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:1.4.0"
     implementation "androidx.core:core-ktx:1.7.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // Instabug
+    implementation 'com.instabug.library:instabug:10.12.0'
+    implementation 'com.instabug.library:instabug-with-okhttp-interceptor:10.12.0'
+
+    // Firebase
+    implementation platform('com.google.firebase:firebase-bom:29.0.3')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation 'com.google.firebase:firebase-perf-ktx'
 }
 repositories {
     mavenCentral()
