@@ -2,15 +2,16 @@ package com.dh.gymhelper.presentation.ui.auth.welcome
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.dh.gymhelper.R
 import com.dh.gymhelper.databinding.FragmentWelcomeScreenBinding
 import com.dh.gymhelper.presentation.extensions.viewBinding
-import com.dh.gymhelper.presentation.ui.base.BaseFragment
 import com.dh.gymhelper.presentation.ui.auth.login.BottomDialogLogin
+import com.dh.gymhelper.presentation.ui.base.BaseFragment
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-class WelcomeFragment: BaseFragment(R.layout.fragment_welcome_screen) {
+@ExperimentalCoroutinesApi
+class WelcomeFragment : BaseFragment(R.layout.fragment_welcome_screen) {
 
     private val binding by viewBinding(FragmentWelcomeScreenBinding::bind)
 
@@ -30,8 +31,8 @@ class WelcomeFragment: BaseFragment(R.layout.fragment_welcome_screen) {
         val texts = listOf(
             "We will help you with notes for your training",
             "Focus on training, we will observe your performance",
-            "Here you can store your best achivements",
-            "You can train everywhere consistance - it’s a key"
+            "Here you can store your best achievements",
+            "You can train everywhere consistency - it’s a key"
         )
         val imageAdapter = WelcomePagerAdapter(imageList = images, textList = texts)
         binding.welcomeImagePager.adapter = imageAdapter
@@ -40,7 +41,7 @@ class WelcomeFragment: BaseFragment(R.layout.fragment_welcome_screen) {
 
     private fun setupAuthButtonsListener() {
         binding.loginButton.setOnClickListener {
-            BottomDialogLogin().setOnClickListener{
+            BottomDialogLogin().setOnClickListener {
 
             }.show(childFragmentManager, "login_dialog")
         }

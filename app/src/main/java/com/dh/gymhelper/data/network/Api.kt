@@ -2,15 +2,10 @@ package com.dh.gymhelper.data.network
 
 import com.dh.gymhelper.domain.user.Credentials
 import com.dh.gymhelper.domain.user.User
-import com.squareup.okhttp.MediaType
-import com.squareup.okhttp.RequestBody
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Response
 import retrofit2.http.Body
-import retrofit2.http.Multipart
+import retrofit2.http.GET
 import retrofit2.http.POST
-import retrofit2.http.Part
 
 interface Api {
 
@@ -20,5 +15,11 @@ interface Api {
 
     @POST("/v1/users/login")
     suspend fun login(@Body credentials: Credentials): Response<String>
+
+    @GET("/v1/users/email/")
+    suspend fun getUserByEmail(@Body email: Map<String, String>): Response<User>
+
+    @GET("/v1/users/")
+    suspend fun getUser(): Response<User>
 
 }

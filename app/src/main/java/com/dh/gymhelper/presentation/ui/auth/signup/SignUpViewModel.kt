@@ -1,12 +1,10 @@
 package com.dh.gymhelper.presentation.ui.auth.signup
 
-import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dh.gymhelper.data.usecase.CreateUserUseCase
-import com.dh.gymhelper.domain.user.Credentials
 import com.dh.gymhelper.domain.user.User
 import com.dh.gymhelper.presentation.extensions.mapToViewError
 import com.dh.gymhelper.presentation.extensions.onError
@@ -20,7 +18,8 @@ import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
 @HiltViewModel
-class SignUpViewModel @Inject constructor(private val createUserUseCase: CreateUserUseCase): ViewModel()  {
+class SignUpViewModel @Inject constructor(private val createUserUseCase: CreateUserUseCase) :
+    ViewModel() {
 
     private val _createUserSuccess = MutableLiveData<String>()
     val createUserSuccess: LiveData<String> get() = _createUserSuccess
@@ -31,9 +30,8 @@ class SignUpViewModel @Inject constructor(private val createUserUseCase: CreateU
     private val _createUserError = MutableLiveData<String>()
     val createUserError: LiveData<String> get() = _createUserError
 
-    fun createUser(imageUri: Uri? = null, firstName: String, lastName: String, email: String, password: String) {
+    fun createUser(firstName: String, lastName: String, email: String, password: String) {
         val user = User(
-            profileImage = imageUri?.toString(),
             firstName = firstName,
             lastName = lastName,
             email = email,

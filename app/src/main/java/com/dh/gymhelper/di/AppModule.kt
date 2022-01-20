@@ -1,26 +1,25 @@
 package com.dh.gymhelper.di
 
-import com.dh.gymhelper.BuildConfig
+import android.content.Context
+import android.content.SharedPreferences
+import com.dh.gymhelper.R
 import com.dh.gymhelper.data.network.Api
-import com.dh.gymhelper.di.AppModule.Companion.loggingInterceptor
+import com.dh.gymhelper.data.network.AuthInterceptor
+import com.dh.gymhelper.data.network.SessionCookieJar
+import com.dh.gymhelper.presentation.util.SessionManager
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.modules.SerializersModule
-import kotlinx.serialization.modules.contextual
-import okhttp3.Interceptor
-import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
+import java.net.CookieManager
+import java.net.CookiePolicy
 import javax.inject.Singleton
 
 const val BASE_URL = "http://192.168.88.244:8080"
@@ -34,13 +33,28 @@ class AppModule {
             HttpLoggingInterceptor().apply { this.level = HttpLoggingInterceptor.Level.BODY }
     }
 
+    @Provides
+    fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences {
+        return context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)
+    }
+
+    @Provides
+    @Singleton
+    fun providesSessionManager(@ApplicationContext context: Context) = SessionManager(context)
+
     // provide httpClient to app
     @Singleton
     @Provides
-    fun providesHttpClient(): OkHttpClient {
+    fun providesHttpClient(
+        @ApplicationContext context: Context
+    ): OkHttpClient {
+        val cookieManager = CookieManager()
+        cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL)
         return OkHttpClient()
             .newBuilder()
+            .cookieJar(SessionCookieJar())
             .retryOnConnectionFailure(true)
+            .addInterceptor(AuthInterceptor(context))
             .addInterceptor(loggingInterceptor)
             .build()
     }
@@ -56,9 +70,11 @@ class AppModule {
     @Singleton
     @Provides
     fun provideRetrofit(
+        client: OkHttpClient
     ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
+            .client(client)
             .addConverterFactory(GsonConverterFactory.create(providesGson()))
             .build()
     }

@@ -1,7 +1,6 @@
 package com.dh.gymhelper.domain.user
 
 import com.google.gson.annotations.SerializedName
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -21,7 +20,5 @@ data class User(
     @SerializedName("exerciseIds")
     val exerciseIds: List<String>? = null,
     @SerializedName("personalBestIds")
-    val personalBestIds: List<String>? = null,
-    @SerializedName("profileImage")
-    val profileImage: String? = null
+    val personalBestIds: List<String>? = null
 )
