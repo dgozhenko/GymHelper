@@ -147,6 +147,12 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
     implementation 'com.google.firebase:firebase-perf-ktx'
+
+    // Splash Screen
+    implementation "androidx.core:core-splashscreen:1.0.0-beta01"
+
+    // Cookie
+    implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
 }
 repositories {
     mavenCentral()

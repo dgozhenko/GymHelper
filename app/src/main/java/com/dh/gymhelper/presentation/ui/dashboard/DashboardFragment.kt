@@ -3,6 +3,7 @@ package com.dh.gymhelper.presentation.ui.dashboard
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.dh.gymhelper.R
 import com.dh.gymhelper.databinding.FragmentDashboardBinding
 import com.dh.gymhelper.presentation.extensions.viewBinding
@@ -21,6 +22,13 @@ class DashboardFragment : BaseFragment(R.layout.fragment_dashboard) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupTestUi()
+        logout()
+    }
+
+    private fun logout() {
+        binding.loginButton.setOnClickListener {
+            viewModel.logout(requireContext())
+        }
     }
 
     private fun setupTestUi() {
@@ -38,6 +46,10 @@ class DashboardFragment : BaseFragment(R.layout.fragment_dashboard) {
         // createUser success
         viewModel.getUserSuccess.observe(viewLifecycleOwner) {
             binding.emailTextView.text = it.email
+        }
+
+        viewModel.logoutSuccess.observe(viewLifecycleOwner) {
+            findNavController().navigate(DashboardFragmentDirections.actionDashboardFragmentToWelcomeFragment())
         }
     }
 

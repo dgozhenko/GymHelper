@@ -1,5 +1,10 @@
 package com.dh.gymhelper.data.network
 
+import android.content.Context
+import com.franmontiel.persistentcookiejar.ClearableCookieJar
+import com.franmontiel.persistentcookiejar.PersistentCookieJar
+import com.franmontiel.persistentcookiejar.cache.SetCookieCache
+import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
 import okhttp3.Cookie
 
 import okhttp3.CookieJar
@@ -8,18 +13,15 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class SessionCookieJar : CookieJar {
-    private var cookies: List<Cookie>? = null
+class SessionCookieJar(context: Context) {
+    private val cookieJar: ClearableCookieJar =
+        PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(context))
 
-    override fun loadForRequest(url: HttpUrl): List<Cookie> {
-        return if (!url.encodedPath.endsWith("login") && cookies != null) {
-            cookies!!
-        } else Collections.emptyList()
+    fun createCookieJar(): ClearableCookieJar {
+        return cookieJar
     }
 
-    override fun saveFromResponse(url: HttpUrl, cookies: List<Cookie>) {
-        if (url.encodedPath.endsWith("login")) {
-            this.cookies = ArrayList(cookies)
-        }
+    fun clearCookieJar() {
+        cookieJar.clear()
     }
 }

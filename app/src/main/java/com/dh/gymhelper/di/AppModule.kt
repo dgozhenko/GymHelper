@@ -7,6 +7,10 @@ import com.dh.gymhelper.data.network.Api
 import com.dh.gymhelper.data.network.AuthInterceptor
 import com.dh.gymhelper.data.network.SessionCookieJar
 import com.dh.gymhelper.presentation.util.SessionManager
+import com.franmontiel.persistentcookiejar.ClearableCookieJar
+import com.franmontiel.persistentcookiejar.PersistentCookieJar
+import com.franmontiel.persistentcookiejar.cache.SetCookieCache
+import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.instabug.library.okhttplogger.InstabugOkhttpInterceptor
@@ -19,9 +23,8 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.net.CookieManager
-import java.net.CookiePolicy
 import javax.inject.Singleton
+
 
 const val BASE_URL = "http://192.168.88.244:8080"
 
@@ -43,17 +46,17 @@ class AppModule {
     @Singleton
     fun providesSessionManager(@ApplicationContext context: Context) = SessionManager(context)
 
+
+
     // provide httpClient to app
     @Singleton
     @Provides
     fun providesHttpClient(
         @ApplicationContext context: Context
     ): OkHttpClient {
-        val cookieManager = CookieManager()
-        cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL)
         return OkHttpClient()
             .newBuilder()
-            .cookieJar(SessionCookieJar())
+            .cookieJar(SessionCookieJar(context).createCookieJar())
             .retryOnConnectionFailure(true)
             .addInterceptor(AuthInterceptor(context))
             .addInterceptor(InstabugOkhttpInterceptor())

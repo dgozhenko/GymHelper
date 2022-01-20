@@ -1,15 +1,18 @@
 package com.dh.gymhelper.presentation.ui.dashboard
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dh.gymhelper.data.network.SessionCookieJar
 import com.dh.gymhelper.data.usecase.GetUser
 import com.dh.gymhelper.domain.user.Credentials
 import com.dh.gymhelper.domain.user.User
 import com.dh.gymhelper.presentation.extensions.mapToViewError
 import com.dh.gymhelper.presentation.extensions.onError
 import com.dh.gymhelper.presentation.extensions.onSuccess
+import com.dh.gymhelper.presentation.util.SessionManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.launchIn
@@ -19,7 +22,10 @@ import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
 @HiltViewModel
-class DashboardViewModel @Inject constructor(private val getUser: GetUser): ViewModel() {
+class DashboardViewModel @Inject constructor(
+    private val getUser: GetUser,
+    private val sessionManager: SessionManager
+    ): ViewModel() {
 
     private val _getUserSuccess = MutableLiveData<User>()
     val getUserSuccess: LiveData<User> get() = _getUserSuccess
@@ -29,6 +35,9 @@ class DashboardViewModel @Inject constructor(private val getUser: GetUser): View
 
     private val _getUserError = MutableLiveData<String>()
     val getUserError: LiveData<String> get() = _getUserError
+
+    private val _logoutSuccess = MutableLiveData<Boolean>()
+    val logoutSuccess: LiveData<Boolean> get() = _logoutSuccess
 
     init {
         getUser()
@@ -49,5 +58,11 @@ class DashboardViewModel @Inject constructor(private val getUser: GetUser): View
                 _getUserLoading.postValue(false)
             }
             .launchIn(viewModelScope)
+    }
+
+     fun logout(context: Context) {
+        sessionManager.clearAuthToken()
+        SessionCookieJar(context).clearCookieJar()
+        _logoutSuccess.postValue(true)
     }
 }
