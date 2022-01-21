@@ -11,13 +11,19 @@
         <item name="colorOnSecondary">@color/onSecondary</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
         <item name="background">@color/background</item>
+        <item name="bottomSheetDialogTheme">@style/KollektivBottomSheetDialogTheme</item>
+    </style>
+
+    <style name="Theme.MySplash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/primary</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="postSplashScreenTheme">@style/Theme.GymHelper</item>
     </style>
 
     <style name="Theme.GymHelper.TextView" parent="Widget.MaterialComponents.TextView">
         <item name="font">@font/ubuntu_light</item>
-        <item name="android:textColor">@color/onPrimary</item>
+        <item name="android:textColor">@color/primary</item>
     </style>
 
     <style name="Theme.GymHelper.Button" parent="Widget.MaterialComponents.Button">
@@ -27,5 +33,49 @@
         <item name="android:textColor">@color/onSecondary</item>
         <item name="android:textSize">16sp</item>
         <item name="font">@font/ubuntu_light</item>
+    </style>
+
+    <style name="Theme.GymHelper.TextLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusBottomEnd">50dp</item>
+        <item name="boxCornerRadiusBottomStart">50dp</item>
+        <item name="boxCornerRadiusTopEnd">50dp</item>
+        <item name="boxCornerRadiusTopStart">50dp</item>
+        <item name="hintTextColor">@color/primary</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:clipToPadding">false</item>
+        <item name="android:textCursorDrawable">@null</item>
+        <item name="android:textColorPrimary">@color/primary</item>
+        <!-- The color of the label in all other text field states (such as resting and disabled) -->
+        <item name="android:textColorHint">@color/text_color_hint</item>
+        <item name="boxStrokeColor">@color/selector_stroke_color</item>
+    </style>
+
+    <style name="KollektivBottomSheetDialogTheme" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="paddingBottomSystemWindowInsets">true</item>
+        <item name="bottomSheetStyle">@style/Widget.BottomSheet</item>
+    </style>
+
+    <style name="Widget.BottomSheet" parent="Widget.MaterialComponents.BottomSheet">
+        <item name="shapeAppearanceOverlay">@style/TopRounded</item>
+    </style>
+
+    <style name="TopRounded" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">50dp</item>
+        <item name="cornerSizeTopLeft">50dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
+
+    <style name="Theme.GymHelper.Toolbar" parent="ThemeOverlay.MaterialComponents.Toolbar.Primary">
+        <item name="textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/primary</item>
+        <item name="font">@font/ubuntu_regular</item>
+    </style>
+
+    <style name="Theme.GymHelper.SplashScreen" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_gradient</item>
+        <item name="android:navigationBarColor">@color/secondary</item>
     </style>
 </resources>

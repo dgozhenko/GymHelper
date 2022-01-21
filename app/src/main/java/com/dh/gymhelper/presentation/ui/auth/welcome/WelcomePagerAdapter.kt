@@ -1,4 +1,4 @@
-package com.dh.gymhelper.presentation.ui.welcome
+package com.dh.gymhelper.presentation.ui.auth.welcome
 
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +10,7 @@ import com.google.android.material.textview.MaterialTextView
 
 class WelcomePagerAdapter(private val imageList: List<Int>, private val textList: List<String>): PagerAdapter() {
 
-    lateinit var layoutInflater: LayoutInflater
+    private lateinit var layoutInflater: LayoutInflater
 
     override fun getCount(): Int {
         return imageList.size
