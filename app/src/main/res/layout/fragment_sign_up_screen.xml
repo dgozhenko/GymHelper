@@ -88,7 +88,7 @@
                     android:drawablePadding="16dp"
                     android:drawableTint="@color/text_field_start_icon_selector"
                     android:hint="@string/last_name"
-                    android:inputType="textPassword" />
+                    android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

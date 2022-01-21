@@ -18,4 +18,5 @@
     <string name="weight">Weight</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="logout">Logout</string>
+    <string name="test">test</string>
 </resources>
