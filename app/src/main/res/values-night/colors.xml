@@ -14,6 +14,8 @@
     <color name="onBackground">#FF5481B5</color>
     <color name="onSurface">#FF5481B5</color>
 
+    <color name="splash_icon_tint">#FFFFFF</color>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 

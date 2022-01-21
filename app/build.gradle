@@ -54,8 +54,7 @@ android {
                     env     : "staging"
             ]
             firebaseAppDistribution {
-                releaseNotes="Release notes for demo version"
-                testers="daniil.hozhenko@gmail.com"
+                groups="gym-testers"
             }
         }
         production {
@@ -66,8 +65,7 @@ android {
                     env     : "production"
             ]
             firebaseAppDistribution {
-                releaseNotes="Release notes for full version"
-                testers="daniil.hozhenko@gmail.com"
+                groups="gym-testers"
             }
         }
     }
