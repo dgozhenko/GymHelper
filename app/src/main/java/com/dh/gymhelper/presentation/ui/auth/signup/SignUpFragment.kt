@@ -1,10 +1,19 @@
 package com.dh.gymhelper.presentation.ui.auth.signup
 
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.canhub.cropper.CropImageContract
+import com.canhub.cropper.PickImageContractOptions
+import com.canhub.cropper.options
 import com.dh.gymhelper.R
 import com.dh.gymhelper.databinding.FragmentSignUpScreenBinding
 import com.dh.gymhelper.presentation.extensions.viewBinding
@@ -20,11 +29,59 @@ class SignUpFragment : BaseFragment(R.layout.fragment_sign_up_screen) {
     private val binding by viewBinding(FragmentSignUpScreenBinding::bind)
     private val viewModel: SignUpViewModel by viewModels()
 
+    private var outputUri: Uri? = null
+    private var imageBitmap: Bitmap? = null
+
+    private val cropImage =
+        registerForActivityResult(CropImageContract()) { result ->
+            if (result.isSuccessful) {
+                val loadingTarget =
+                    object : CustomTarget<Bitmap>(360, 360) {
+                        override fun onResourceReady(
+                            resource: Bitmap,
+                            transition: com.bumptech.glide.request.transition.Transition<in Bitmap>?
+                        ) {
+                            imageBitmap = resource
+                            binding.profileImage.setImageBitmap(imageBitmap)
+                            binding.addAPhotoText.visibility = View.GONE
+                        }
+                        override fun onLoadCleared(placeholder: Drawable?) {}
+                    }
+
+
+                val uriContent = result.uriContent
+                outputUri = uriContent!!
+                Glide.with(requireContext())
+                    .asBitmap()
+                    .load(outputUri)
+                    .skipMemoryCache(true)
+                    .into(loadingTarget)
+
+            } else {
+                // an error occurred
+                val exception = result.error
+                Toast.makeText(requireContext(), exception?.message, Toast.LENGTH_SHORT).show()
+            }
+        }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupToolbar()
+        imagePickerCalled()
         confirmButtonListener()
         initObservers()
+    }
+
+    private fun imagePickerCalled() {
+        binding.profileImage.setOnClickListener{
+            cropImage.launch(
+                options {
+                    setImagePickerContractOptions(
+                        PickImageContractOptions(includeGallery = true, includeCamera = true)
+                    )
+                }
+            )
+        }
     }
 
     private fun setupToolbar() {
@@ -55,7 +112,8 @@ class SignUpFragment : BaseFragment(R.layout.fragment_sign_up_screen) {
                     firstName = binding.firstNameTextField.text.toString(),
                     lastName = binding.lastNameTextField.text.toString(),
                     email = binding.emailTextField.text.toString(),
-                    password = binding.passwordTextField.text.toString()
+                    password = binding.passwordTextField.text.toString(),
+                    imageBitmap = imageBitmap
                 )
             }
         }
@@ -76,7 +134,9 @@ class SignUpFragment : BaseFragment(R.layout.fragment_sign_up_screen) {
 
         // createUser success
         viewModel.createUserSuccess.observe(viewLifecycleOwner) {
-            Snackbar.make(requireView(), it, Snackbar.LENGTH_SHORT).show()
+            if (it) {
+                 findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToDashboardFragment())
+            }
         }
     }
 

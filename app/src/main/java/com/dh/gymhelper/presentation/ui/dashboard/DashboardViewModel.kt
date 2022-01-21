@@ -5,7 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bumptech.glide.load.model.GlideUrl
 import com.dh.gymhelper.data.network.SessionCookieJar
+import com.dh.gymhelper.data.usecase.GetProfileImage
 import com.dh.gymhelper.data.usecase.GetUser
 import com.dh.gymhelper.domain.user.Credentials
 import com.dh.gymhelper.domain.user.User
@@ -15,6 +17,7 @@ import com.dh.gymhelper.presentation.extensions.onSuccess
 import com.dh.gymhelper.presentation.util.SessionManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
@@ -24,7 +27,8 @@ import javax.inject.Inject
 @HiltViewModel
 class DashboardViewModel @Inject constructor(
     private val getUser: GetUser,
-    private val sessionManager: SessionManager
+    private val sessionManager: SessionManager,
+    private val getProfileImage: GetProfileImage
     ): ViewModel() {
 
     private val _getUserSuccess = MutableLiveData<User>()
@@ -39,8 +43,24 @@ class DashboardViewModel @Inject constructor(
     private val _logoutSuccess = MutableLiveData<Boolean>()
     val logoutSuccess: LiveData<Boolean> get() = _logoutSuccess
 
+    private val _getProfileSuccess = MutableLiveData<String>()
+    val getProfileSuccess: LiveData<String> get() = _getProfileSuccess
+
     init {
         getUser()
+    }
+
+    private fun loadProfileImage() {
+        getProfileImage.getProfileImage()
+            .onStart {  }
+            .onError {
+
+            }
+            .onCompletion {  }
+            .onSuccess {
+                _getProfileSuccess.postValue(it.profileImage)
+            }
+            .launchIn(viewModelScope)
     }
 
     private fun getUser() {
@@ -50,6 +70,7 @@ class DashboardViewModel @Inject constructor(
             }
             .onSuccess {
                 _getUserSuccess.postValue(it)
+                loadProfileImage()
             }
             .onError {
                 _getUserError.postValue(it.mapToViewError().message)

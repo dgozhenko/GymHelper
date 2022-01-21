@@ -2,6 +2,7 @@ package com.dh.gymhelper.data.datasource
 
 import com.dh.gymhelper.data.network.Api
 import com.dh.gymhelper.domain.user.Credentials
+import com.dh.gymhelper.domain.user.ProfileImage
 import com.dh.gymhelper.domain.user.User
 import com.dh.gymhelper.presentation.extensions.repoCall
 
@@ -21,5 +22,13 @@ class UserDataSourceImpl(private val api: Api) : UserDataSource {
 
     override suspend fun getUser(): User = repoCall {
         api.getUser()
+    }
+
+    override suspend fun updateProfileImage(profileImage: ProfileImage): Boolean = repoCall{
+        api.updateProfileImage(profileImage)
+    }
+
+    override suspend fun getProfileImage(): ProfileImage = repoCall{
+        api.getProfileImage()
     }
 }
