@@ -6,6 +6,46 @@
     android:layout_height="match_parent"
     tools:context=".presentation.MainActivity">
 
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottom_app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:labelVisibilityMode="labeled"
+            app:navigationIconTint="@color/ic_home_menu_selector"
+            app:fabAlignmentMode="end"
+            app:fabCradleRoundedCornerRadius="20dp"
+            app:navigationIcon="@null">
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottom_navigation_view"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                app:elevation="0dp"
+                android:background="@android:color/transparent"
+                app:itemBackground="@android:color/transparent"
+                app:itemIconTint="@color/ic_home_menu_selector"
+                app:itemTextColor="@color/ic_home_menu_selector"
+                app:menu="@menu/home_menu" />
+
+        </com.google.android.material.bottomappbar.BottomAppBar>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_add_24"
+            app:layout_anchor="@id/bottom_app_bar"
+            android:contentDescription="@string/float_button" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
     <fragment
         android:id="@+id/fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"

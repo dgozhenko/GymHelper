@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/nav_graph_home"
+        android:title="@string/home"
+        android:orderInCategory="1"
+        android:icon="@drawable/ic_round_home_24"
+        app:showAsAction="always"
+        tools:ignore="AlwaysShowAction" />
+
+    <item android:id="@+id/nav_graph_trainings"
+        android:title="@string/training"
+        android:orderInCategory="2"
+        android:icon="@drawable/ic_trainings"
+        app:showAsAction="always"/>
+
+    <item android:title=""
+        app:showAsAction="always"
+        android:enabled="false"
+        android:orderInCategory="4"/>
+
+    <item android:id="@+id/nav_graph_stats"
+        android:title="@string/stats"
+        android:orderInCategory="3"
+        android:icon="@drawable/ic_stats"
+        app:showAsAction="always"/>
+
+</menu>

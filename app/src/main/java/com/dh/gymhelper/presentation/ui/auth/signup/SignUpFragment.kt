@@ -8,6 +8,8 @@ import android.text.Editable
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
@@ -139,8 +141,10 @@ class SignUpFragment : BaseFragment(R.layout.fragment_sign_up_screen) {
 
         // createUser success
         viewModel.createUserSuccess.observe(viewLifecycleOwner) {
+            val navBuilder = NavOptions.Builder()
+            navBuilder.setEnterAnim(R.anim.from_bottom).setExitAnim(R.anim.to_top)
             if (it) {
-                 findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToDashboardFragment())
+                findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToDashboardFragment())
             }
         }
     }

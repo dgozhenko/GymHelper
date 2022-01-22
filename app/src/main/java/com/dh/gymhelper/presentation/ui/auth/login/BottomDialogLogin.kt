@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.dh.gymhelper.R
 import com.dh.gymhelper.databinding.BottomDialogLoginBinding
@@ -73,6 +75,8 @@ class BottomDialogLogin : BottomSheetDialogFragment() {
         }
 
         viewModel.loginSuccess.observe(viewLifecycleOwner) {
+            val navBuilder = NavOptions.Builder()
+            navBuilder.setEnterAnim(R.anim.from_bottom).setExitAnim(R.anim.to_top)
             when (it) {
                 true -> findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToDashboardFragment())
                 false -> dismiss()
