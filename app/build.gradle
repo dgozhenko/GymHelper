@@ -20,7 +20,7 @@ android {
         minSdk 23
         targetSdk 32
         versionCode 1
-        versionName "1.1"
+        versionName "1.1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -54,6 +54,7 @@ android {
                     env     : "staging"
             ]
             firebaseAppDistribution {
+                releaseNotes="- Animations \n- Password only 8+ symbols, and alphanumeric\n- Bottom app bar for Dashboard"
                 groups="gym-testers"
             }
         }
