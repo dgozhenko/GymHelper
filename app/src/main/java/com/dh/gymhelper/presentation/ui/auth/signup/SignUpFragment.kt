@@ -154,6 +154,7 @@ class SignUpFragment : BaseFragment(R.layout.fragment_sign_up_screen) {
             passwordFieldText.isNullOrBlank() -> passwordError()
             confirmPasswordFieldText.isNullOrBlank() -> confirmPasswordError()
             passwordFieldText.toString() != confirmPasswordFieldText.toString() -> passwordDifferenceError()
+            passwordFieldText.count() < 8 -> shortPasswordError()
             else -> false
         }
     }
@@ -183,6 +184,11 @@ class SignUpFragment : BaseFragment(R.layout.fragment_sign_up_screen) {
 
     private fun confirmPasswordError(): Boolean {
         Snackbar.make(requireView(), "Enter confirm password please", Snackbar.LENGTH_SHORT).show()
+        return true
+    }
+
+    private fun shortPasswordError(): Boolean {
+        Snackbar.make(requireView(), "Password cannot be shorter than 8 symbols", Snackbar.LENGTH_SHORT).show()
         return true
     }
 
