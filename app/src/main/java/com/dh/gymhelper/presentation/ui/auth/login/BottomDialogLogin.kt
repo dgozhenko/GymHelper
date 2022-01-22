@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.dh.gymhelper.R
 import com.dh.gymhelper.databinding.BottomDialogLoginBinding
+import com.dh.gymhelper.presentation.extensions.allowOnlyAlphaNumericCharacters
 import com.dh.gymhelper.presentation.extensions.viewBinding
 import com.dh.gymhelper.presentation.ui.auth.welcome.WelcomeFragmentDirections
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -46,6 +47,7 @@ class BottomDialogLogin : BottomSheetDialogFragment() {
         binding.confirmButton.setOnClickListener {
             confirmButtonListener?.onClick(it)
             binding.emailTextField.error = null
+            binding.passwordTextField.allowOnlyAlphaNumericCharacters()
             when {
                 binding.emailTextField.text.isNullOrBlank() && binding.passwordTextField.text.isNullOrBlank() -> emptyEmailAndPassword()
                 binding.emailTextField.text.isNullOrBlank() -> emptyEmail()

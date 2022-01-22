@@ -16,6 +16,7 @@ import com.canhub.cropper.PickImageContractOptions
 import com.canhub.cropper.options
 import com.dh.gymhelper.R
 import com.dh.gymhelper.databinding.FragmentSignUpScreenBinding
+import com.dh.gymhelper.presentation.extensions.allowOnlyAlphaNumericCharacters
 import com.dh.gymhelper.presentation.extensions.viewBinding
 import com.dh.gymhelper.presentation.ui.base.BaseFragment
 import com.google.android.material.snackbar.Snackbar
@@ -96,6 +97,10 @@ class SignUpFragment : BaseFragment(R.layout.fragment_sign_up_screen) {
         val emailFieldText = binding.emailTextField.text
         val passwordFieldText = binding.passwordTextField.text
         val confirmPasswordFieldText = binding.confirmPasswordTextField.text
+
+        binding.passwordTextField.allowOnlyAlphaNumericCharacters()
+        binding.confirmPasswordTextField.allowOnlyAlphaNumericCharacters()
+
         binding.confirmButton.setOnClickListener {
             binding.firstNameTextField.error = null
             binding.lastNameTextField.error = null
