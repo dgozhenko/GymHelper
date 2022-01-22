@@ -37,10 +37,10 @@ class MainActivity : AppCompatActivity() {
                     // Check if the initial data is ready.
                     return if (viewModel.loggedIn != null) {
                         if (viewModel.loggedIn == true) {
+                            navController.popBackStack(R.id.welcomeFragment, true)
                             navController.navigate(R.id.dashboardFragment)
-
                         } else {
-                            navController.navigate(R.id.welcomeFragment)
+                            navController.popBackStack(R.id.welcomeFragment, false)
                         }
                         // The content is ready; start drawing.
                         content.viewTreeObserver.removeOnPreDrawListener(this)
