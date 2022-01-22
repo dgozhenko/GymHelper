@@ -8,12 +8,14 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
-import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import com.dh.gymhelper.R
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.shape.MaterialShapeDrawable
+import com.google.android.material.shape.RelativeCornerSize
+import com.google.android.material.shape.RoundedCornerTreatment
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -56,6 +58,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun initBottomBar(navController: NavController) {
         val bottomAppBar = findViewById<BottomAppBar>(R.id.bottom_app_bar)
+
+        val bottomBarBackground = bottomAppBar.background as MaterialShapeDrawable
+        bottomBarBackground.shapeAppearanceModel = bottomBarBackground.shapeAppearanceModel
+            .toBuilder()
+            .setAllCorners(RoundedCornerTreatment()).setAllCornerSizes(RelativeCornerSize(0.50f))
+            .build()
+
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
         visibilityNavElements(navController, bottomAppBar)
 

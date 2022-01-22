@@ -6,6 +6,7 @@
         <entry key="app/src/main/res/drawable-v24/ic_upload.xml" value="0.1515" />
         <entry key="app/src/main/res/drawable/button_gradient.xml" value="0.107" />
         <entry key="app/src/main/res/drawable/circle_edit_text.xml" value="0.107" />
+        <entry key="app/src/main/res/drawable/half_rounded_bottom_app_bar.xml" value="0.107" />
         <entry key="app/src/main/res/drawable/ic_gym_helper_icon_background.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_gym_helper_splash_icon_background.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_gym_helper_splash_icon_foreground.xml" value="0.1" />
