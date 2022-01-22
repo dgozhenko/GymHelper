@@ -19,4 +19,8 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="logout">Logout</string>
     <string name="test">test</string>
+    <string name="home">Home</string>
+    <string name="training">Training</string>
+    <string name="stats">Stats</string>
+    <string name="float_button">Float Button</string>
 </resources>
