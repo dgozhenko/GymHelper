@@ -20,19 +20,18 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            app:background="@drawable/half_rounded_bottom_app_bar"
-            app:labelVisibilityMode="labeled"
-            app:navigationIconTint="@color/ic_home_menu_selector"
             app:fabAlignmentMode="end"
-            app:fabCradleRoundedCornerRadius="20dp"
-            app:navigationIcon="@null">
+            app:fabCradleRoundedCornerRadius="-10dp"
+            app:labelVisibilityMode="labeled"
+            app:navigationIcon="@null"
+            app:navigationIconTint="@color/ic_home_menu_selector">
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottom_navigation_view"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                app:elevation="0dp"
                 android:background="@android:color/transparent"
+                app:elevation="0dp"
                 app:itemBackground="@android:color/transparent"
                 app:itemIconTint="@color/ic_home_menu_selector"
                 app:itemTextColor="@color/ic_home_menu_selector"
@@ -44,9 +43,10 @@
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/primary"
+            android:contentDescription="@string/float_button"
             android:src="@drawable/ic_baseline_add_24"
-            app:layout_anchor="@id/bottom_app_bar"
-            android:contentDescription="@string/float_button" />
+            app:layout_anchor="@id/bottom_app_bar" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

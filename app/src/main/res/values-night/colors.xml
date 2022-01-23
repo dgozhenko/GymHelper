@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#FF5481B5</color>
+    <color name="primary">#FF3D6881</color>
     <color name="primaryVariant">#FF111111</color>
     <color name="secondary">#FF304352</color>
-    <color name="secondaryVariant">#FF828997</color>
-    <color name="background">#FF313131</color>
+    <color name="secondaryVariant">#FF616670</color>
+    <color name="background">#FF212121</color>
     <color name="surface">#FF313131</color>
     <color name="error">#FFCF6679</color>
+    <color name="items_background">#FF313131</color>
+
 
     <color name="onPrimary">#FFFFFFFF</color>
     <color name="onError">#FFFFFFFF</color>
@@ -19,5 +21,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="name_color">#FFFFFFFF</color>
     <color name="text_field_grey">#FF5a5a5a</color>
 </resources>

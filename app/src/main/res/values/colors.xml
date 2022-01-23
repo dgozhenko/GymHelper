@@ -7,6 +7,7 @@
     <color name="background">#FFFFFFFF</color>
     <color name="surface">#FFE5E5E5</color>
     <color name="error">#FFB00020</color>
+    <color name="items_background">#FFFFFFFF</color>
 
     <color name="onPrimary">#FFFFFFFF</color>
     <color name="onError">#FFFFFFFF</color>
@@ -19,5 +20,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+
+    <color name="name_color">#FF000000</color>
     <color name="text_field_grey">#FF808080</color>
 </resources>

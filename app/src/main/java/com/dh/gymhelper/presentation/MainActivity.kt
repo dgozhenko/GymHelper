@@ -62,14 +62,14 @@ class MainActivity : AppCompatActivity() {
         val bottomBarBackground = bottomAppBar.background as MaterialShapeDrawable
         bottomBarBackground.shapeAppearanceModel = bottomBarBackground.shapeAppearanceModel
             .toBuilder()
-            .setAllCorners(RoundedCornerTreatment()).setAllCornerSizes(RelativeCornerSize(0.50f))
+            .setAllCorners(RoundedCornerTreatment()).setAllCornerSizes(RelativeCornerSize(0.5f))
             .build()
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
         visibilityNavElements(navController, bottomAppBar)
 
         bottomNavigationView.setOnItemSelectedListener { item ->
-            when(item.itemId) {
+            when (item.itemId) {
                 R.id.nav_graph_home -> {
                     Toast.makeText(applicationContext, "Home", Toast.LENGTH_SHORT).show()
                     true
@@ -95,6 +95,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.dashboardFragment -> showAppBar(bottomAppBar, fab)
                 R.id.welcomeFragment -> hideAppBar(bottomAppBar, fab)
                 R.id.signUpFragment -> hideAppBar(bottomAppBar, fab)
+                R.id.profileFragment -> hideAppBar(bottomAppBar, fab)
                 else -> showAppBar(bottomAppBar, fab)
             }
         }

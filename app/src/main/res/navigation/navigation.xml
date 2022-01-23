@@ -46,5 +46,12 @@
             app:exitAnim="@anim/to_bottom"
             app:popUpTo="@id/dashboardFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.dh.gymhelper.presentation.ui.profile.ProfileFragment"
+        android:label="ProfileFragment" />
 </navigation>

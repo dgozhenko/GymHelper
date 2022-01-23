@@ -7,6 +7,9 @@
         <entry key="app/src/main/res/drawable/button_gradient.xml" value="0.107" />
         <entry key="app/src/main/res/drawable/circle_edit_text.xml" value="0.107" />
         <entry key="app/src/main/res/drawable/half_rounded_bottom_app_bar.xml" value="0.107" />
+        <entry key="app/src/main/res/drawable/ic_baseline_chevron_right_24.xml" value="0.107" />
+        <entry key="app/src/main/res/drawable/ic_body.xml" value="0.107" />
+        <entry key="app/src/main/res/drawable/ic_exercises.xml" value="0.107" />
         <entry key="app/src/main/res/drawable/ic_gym_helper_icon_background.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_gym_helper_splash_icon_background.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_gym_helper_splash_icon_foreground.xml" value="0.1" />
@@ -16,10 +19,12 @@
         <entry key="app/src/main/res/drawable/ic_icon.xml" value="0.105" />
         <entry key="app/src/main/res/drawable/ic_login_final_vector.xml" value="0.107" />
         <entry key="app/src/main/res/drawable/ic_round_home_24.xml" value="0.1515" />
+        <entry key="app/src/main/res/drawable/ic_settings.xml" value="0.107" />
         <entry key="app/src/main/res/drawable/ic_stats.xml" value="0.1515" />
         <entry key="app/src/main/res/drawable/ic_stats_inset.xml" value="0.1515" />
         <entry key="app/src/main/res/drawable/ic_trainings.xml" value="0.1515" />
         <entry key="app/src/main/res/drawable/ic_trainings_inset.xml" value="0.1515" />
+        <entry key="app/src/main/res/drawable/ic_trophy.xml" value="0.107" />
         <entry key="app/src/main/res/drawable/progress_bar_drawable.xml" value="0.107" />
         <entry key="app/src/main/res/drawable/progress_rotating_gradient.xml" value="0.107" />
         <entry key="app/src/main/res/drawable/rounded_progress_background.xml" value="0.107" />
@@ -37,6 +42,7 @@
         <entry key="app/src/main/res/layout/bottom_dialog_login.xml" value="0.22056159420289856" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.18125" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.33177083333333335" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.4028436018957346" />
         <entry key="app/src/main/res/layout/fragment_sign_up_screen.xml" value="0.15" />
         <entry key="app/src/main/res/layout/fragment_welcome_screen.xml" value="0.12604166666666666" />
         <entry key="app/src/main/res/layout/splash_activity.xml" value="0.33" />
