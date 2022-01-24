@@ -26,30 +26,15 @@ import javax.inject.Inject
 @ExperimentalCoroutinesApi
 @HiltViewModel
 class DashboardViewModel @Inject constructor(
-    private val getUser: GetUser,
-    private val sessionManager: SessionManager,
     private val getProfileImage: GetProfileImage
     ): ViewModel() {
-
-    private val _getUserSuccess = MutableLiveData<User>()
-    val getUserSuccess: LiveData<User> get() = _getUserSuccess
-
-    private val _getUserLoading = MutableLiveData<Boolean>()
-    val getUserLoading: LiveData<Boolean> get() = _getUserLoading
-
-    private val _getUserError = MutableLiveData<String>()
-    val getUserError: LiveData<String> get() = _getUserError
-
-    private val _logoutSuccess = MutableLiveData<Boolean>()
-    val logoutSuccess: LiveData<Boolean> get() = _logoutSuccess
 
     private val _getProfileSuccess = MutableLiveData<String>()
     val getProfileSuccess: LiveData<String> get() = _getProfileSuccess
 
     init {
-        getUser()
+        loadProfileImage()
     }
-
     private fun loadProfileImage() {
         getProfileImage.getProfileImage()
             .onStart {  }
@@ -61,29 +46,5 @@ class DashboardViewModel @Inject constructor(
                 _getProfileSuccess.postValue(it.profileImage)
             }
             .launchIn(viewModelScope)
-    }
-
-    private fun getUser() {
-        getUser.get()
-            .onStart {
-                _getUserLoading.postValue(true)
-            }
-            .onSuccess {
-                _getUserSuccess.postValue(it)
-                loadProfileImage()
-            }
-            .onError {
-                _getUserError.postValue(it.mapToViewError().message)
-            }
-            .onCompletion {
-                _getUserLoading.postValue(false)
-            }
-            .launchIn(viewModelScope)
-    }
-
-     fun logout(context: Context) {
-        sessionManager.clearAuthToken()
-        SessionCookieJar(context).clearCookieJar()
-        _logoutSuccess.postValue(true)
     }
 }

@@ -40,18 +40,19 @@
         android:name="com.dh.gymhelper.presentation.ui.dashboard.DashboardFragment"
         android:label="DashboardFragment" >
         <action
-            android:id="@+id/action_dashboardFragment_to_welcomeFragment"
-            app:destination="@id/welcomeFragment"
-            app:enterAnim="@anim/from_top"
-            app:exitAnim="@anim/to_bottom"
-            app:popUpTo="@id/dashboardFragment"
-            app:popUpToInclusive="true" />
-        <action
             android:id="@+id/action_dashboardFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.dh.gymhelper.presentation.ui.profile.ProfileFragment"
-        android:label="ProfileFragment" />
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment"
+            app:enterAnim="@anim/from_top"
+            app:exitAnim="@anim/to_bottom"
+            app:popUpTo="@id/profileFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
