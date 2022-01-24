@@ -20,7 +20,7 @@ android {
         minSdk 23
         targetSdk 32
         versionCode 1
-        versionName "1.2.1"
+        versionName "1.2.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -54,7 +54,7 @@ android {
                     env     : "staging"
             ]
             firebaseAppDistribution {
-                releaseNotes="- Float Action Button menu"
+                releaseNotes="- Fix for ripple effect \n- Fix for scroll"
                 groups="gym-testers"
             }
         }
