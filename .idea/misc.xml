@@ -6,6 +6,8 @@
         <entry key="app/src/main/res/drawable-v24/ic_upload.xml" value="0.1515" />
         <entry key="app/src/main/res/drawable/button_gradient.xml" value="0.107" />
         <entry key="app/src/main/res/drawable/circle_edit_text.xml" value="0.107" />
+        <entry key="app/src/main/res/drawable/gradient_button_riple.xml" value="0.1515" />
+        <entry key="app/src/main/res/drawable/gradient_button_selector.xml" value="0.1515" />
         <entry key="app/src/main/res/drawable/half_rounded_bottom_app_bar.xml" value="0.107" />
         <entry key="app/src/main/res/drawable/ic_baseline_chevron_right_24.xml" value="0.107" />
         <entry key="app/src/main/res/drawable/ic_body.xml" value="0.107" />

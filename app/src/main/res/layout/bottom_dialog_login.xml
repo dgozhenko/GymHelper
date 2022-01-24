@@ -79,9 +79,8 @@
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="24dp"
-        android:background="@drawable/button_gradient"
+        android:background="@drawable/gradient_button_riple"
         android:backgroundTint="@null"
-        android:foreground="?attr/selectableItemBackground"
         android:text="@string/confirm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/forgot_a_password" />
