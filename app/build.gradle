@@ -20,7 +20,7 @@ android {
         minSdk 23
         targetSdk 32
         versionCode 1
-        versionName "1.2"
+        versionName "1.2.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -54,7 +54,7 @@ android {
                     env     : "staging"
             ]
             firebaseAppDistribution {
-                releaseNotes="- Profile Screen \n- Dashboard Update\n- New Animation"
+                releaseNotes="- Float Action Button menu"
                 groups="gym-testers"
             }
         }
